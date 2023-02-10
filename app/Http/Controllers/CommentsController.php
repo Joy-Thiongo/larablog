@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Blog;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
-class BlogsController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class BlogsController extends Controller
     {
         //
         $data = [];
-        $data['blogs'] = Blog::get();
+        $data['comments'] = Comment::get();
 
-        return view('blogs.index', $data);
+        return view('comments.index', $data);
     }
 
     /**
@@ -29,7 +29,7 @@ class BlogsController extends Controller
     public function create()
     {
         //
-        return view('blogs.create');
+        return view('comments.create');
     }
 
     /**
@@ -41,12 +41,11 @@ class BlogsController extends Controller
     public function store(Request $request)
     {
         //
-        // call the instance of a class
-        $blog = new Blog;
-        $blog->title = $request->title;
-        $blog->description = $request->description;
-        $blog->blog = $request->blog;
-        $blog->save();
+        $comment = new Comment();
+        $comment->comment = $request->comment;
+        $comment->blog_id = 1;
+        $comment->user_id = 1;
+        $comment->save();
         return back();
     }
 

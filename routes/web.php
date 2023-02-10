@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BlogsController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,4 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [BlogsController::class, 'index']);
+Route::get('/blogs/create', [BlogsController::class, 'create']);
+Route::post('/blogs', [BlogsController::class, 'store']);
+Route::get('/comments', [CommentsController::class, 'index']);
+Route::get('/comments/create', [CommentsController::class, 'create']);
+Route::post('/comments', [CommentsController::class, 'store']);
